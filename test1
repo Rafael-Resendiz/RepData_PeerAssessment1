@@ -1,0 +1,34 @@
+# this is a test
+
+## Reproducible Research
+
+## Assignment 1
+##
+## Download a file from the web Bajando un archivo desde la red
+
+# copy and modify the word "link" with the filke adresse (include the extensión file)
+# fileUrl <- "link?accessType=DOWNLOAD"
+
+fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip?accessType=DOWNLOAD"
+
+# copiar la línea siguiente y modificar la palabra "directorio" y 
+# anote la dirección donde está la carpeta en la que desea colocar el archivo, además
+# modifique la palabra "nombre_archivo" con el nombre que desea darle al archivo que va a bajar
+# download.file(fileUrl, destfile = "directorio/nombre_archivo.csv", method = "curl")
+download.file(fileUrl, destfile = "/Users/administrador/Specialization/Activity_monitoring_data.zip", method = "curl")
+
+# Asegurarse que está el archivo con fecha de bajada
+list.files("../Specialization")
+dateDownloaded <- date()
+
+# unzip the file
+unzip("Activity_monitoring_data.zip")
+
+# Read the file
+activity.csv <- read.table("../Specialization/activity.csv", sep = ",", header = TRUE)
+
+# Show the head file
+head(activity.csv)
+
+# Stream the databases
+str(activity.csv)
