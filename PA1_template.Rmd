@@ -2,7 +2,7 @@
 # Reproducible Research: Peer Assessment 1
 ##Rafael Reséndiz Ramírez
 ### (https://github.com/Rafael-Resendiz/RepData_PeerAssessment1)
-### PA1_template.Rmd (https://github.com/Rafael-Resendiz/RepData_PeerAssessment1/edit/master/PA1_template.Rmd)
+### PA1_template.Rmd [https://github.com/Rafael-Resendiz/RepData_PeerAssessment1/edit/master/PA1_template.Rmd]
 
 output: 
   html_document:
