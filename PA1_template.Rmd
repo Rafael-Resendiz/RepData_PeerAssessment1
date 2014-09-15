@@ -77,6 +77,15 @@ xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5
 ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
 main = "Daily Activity Patern")
 ```
+Saving the file
+````{r savingbarplot}
+ dev.copy(png, file="averageInterval.png", 
+ height=480, 
+ width=480,
+ units = "px", 
+ bg = "transparent")
+ dev.off()
+ ```
 
 ## Imputing missing values
 As shown in the summary of "data frame" called "activity" there lost in the variable "distance" values​​, 
@@ -90,6 +99,18 @@ barchart(missdata ~ names(missdata),xlab="24 hours in the day",
 ylab="Average number of steps in intervals of every 5 minutes",
 ylim=c(0,10),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
 main = "Daily Activity Patern (Missing Data)")
+
+Saving the file
+````{r savingbarplot}
+ dev.copy(png, file="missData.png", 
+ height=480, 
+ width=480,
+ units = "px", 
+ bg = "transparent")
+ dev.off()
+ ```
+
+
 ```
 If needed 
 ````{r barplot,fig.align='center',fig.height=4,fig.width=8}
@@ -98,7 +119,18 @@ barchart(missDatainday ~ names(missDatainday),xlab = "Study Days",
          ylab="Missing values during each of the study days",
          ylim=c(0,300),scales=list(x=list(draw=FALSE)), 
          main= "Missing data by day of study")
-``` 
+```
+Saving the file
+````{r savingbarplot}
+ dev.copy(png, file="missDatainday.png", 
+ height=480, 
+ width=480,
+ units = "px", 
+ bg = "transparent")
+ dev.off()
+ ```
+
+
 The total days of study was 61, but data from 8 of those days were lost, 
 to find the position of the missing data and their corresponding dates
 of the procedure should be as follows:
