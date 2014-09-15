@@ -79,7 +79,12 @@ main = "Daily Activity Patern")
 Como se muestra en el resumen del "marco de datos" denominado "actividad", hay valores perdidos en la variable "pasos", de un total de "n" observaciones. La proporcion es bastante alta.  
 
 Por eso, se debería observar la distribución de los datos perdidos por intervalo.
-
-
+````{r barplot,fig.align='center',fig.height=4,fig.width=8}
+missdata <- xtabs(is.na(steps) ~ interval, activity)
+barchart(missdata ~ names(missdata),xlab="24 hours in the day",
+ylab="Average number of steps in intervals of every 5 minutes",
+ylim=c(0,10),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
+main = "Daily Activity Patern (Missing Data)")
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
