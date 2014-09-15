@@ -111,7 +111,6 @@ Saving the file
  ```
 
 
-```
 If needed 
 ````{r barplot,fig.align='center',fig.height=4,fig.width=8}
 missDatainday <- xtabs(is.na(steps) ~ date, activity)
