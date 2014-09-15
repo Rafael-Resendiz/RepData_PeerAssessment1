@@ -23,21 +23,28 @@ unzip the file
 ````
 Read the file   
 ```{r readdata}
-     activity.csv <- read.table("../Specialization/activity.csv", sep = ",", header = TRUE)    
+     activity <- read.table("../Specialization/activity.csv", sep = ",", header = TRUE)    
 ```
 Show the head file
 ```{r readdata}
-     head(activity.csv)    
+     head(activity)    
 ````
 Stream the databases
 ```{r readdata}
-     str(activity.csv)   
+     str(activity)   
 ```
          
 
 ## What is mean total number of steps taken per day?
 
-The *xtabs* function can be used to determine the total number of steps taken per day
+The *xtabs* and *mean* function can be used to determine the mean total number of steps taken per day
+
+```{r readdata}
+     totalNumberSteps <- xtabs(steps ~ date,activity)
+
+mean(totalNumberSteps)  
+```
+
 
 
 ## What is the average daily activity pattern?
