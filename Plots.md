@@ -2,7 +2,7 @@
 
 ## Plot  1  
 
-![plot of chunk unnamed-chunk-2](plot_1-4_png/plot1.png)
+![plot of chunk unnamed-chunk-2](plotsPA1/averageInterval.png)
 
 
 ## Plot  2
