@@ -126,3 +126,4 @@ ylab="Average number of steps in intervals of every 5 minutes",xlab=NULL,
 scales=list(x=list(draw=FALSE)),
 main= "Differences in activity patterns between weekdays and weekends")
 ````
+````{r savingbarplot}
