@@ -23,6 +23,7 @@ Show the head file
          head(activity.csv)
 Stream the databases
          str(activity.csv)
+         
 
 ## What is mean total number of steps taken per day?
 
