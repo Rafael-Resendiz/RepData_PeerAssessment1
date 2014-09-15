@@ -125,5 +125,13 @@ barchart(Freq ~ interval|wday,dfrm,layout=c(1,7),strip=FALSE,strip.left=TRUE,
 ylab="Average number of steps in intervals of every 5 minutes",xlab=NULL,
 scales=list(x=list(draw=FALSE)),
 main= "Differences in activity patterns between weekdays and weekends")
-````
+```
+Saving the file`
 ````{r savingbarplot}
+ dev.copy(png, file="plotdiference.png", 
+ height=480, 
+ width=480,
+ units = "px", 
+ bg = "transparent")
+ dev.off()
+ ```
