@@ -1,14 +1,7 @@
 
 ---
-+title: "Reproducible Research: Peer Assessment 1"
-+output: 
-+  html_document:
-+    keep_md: true
----
-
-
----
 # Reproducible Research: Peer Assessment 1
+________________
 ## [Rafael Reséndiz Ramírez] (https://github.com/Rafael-Resendiz)
 ### [PA1_template.Rmd] (https://github.com/Rafael-Resendiz/RepData_PeerAssessment1/edit/master/PA1_template.Rmd)
 
