@@ -14,7 +14,8 @@ Load the data (i.e. read.csv())
 Process/transform the data (if necessary) into a format suitable for your analysis  
 ```{r readdata}
      fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip?accessType=DOWNLOAD"  
-     download.file(fileUrl, destfile = "/Users/administrador/Specialization/Activity_monitoring_data.zip", method = "curl")    
+     download.file(fileUrl, destfile = "/Users/administrador/Specialization/Activity_monitoring_data.zip", 
+     method = "curl")    
 ````
 unzip the file    
 ```{r readdata}
