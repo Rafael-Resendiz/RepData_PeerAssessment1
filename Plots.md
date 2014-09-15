@@ -7,11 +7,11 @@
 
 ## Plot  2
 
-![plot of chunk unnamed-chunk-2](plotsPA1 / missData.png)
+![plot of chunk unnamed-chunk-2](plotsPA1 /missData.png)
 
 ## Plot  3  
 
-![plot of chunk unnamed-chunk-2](plot_1-4_png/plot3.png)
+![plot of chunk unnamed-chunk-2](plotsPA1 /missDatainday.png)
 
 
 ## Plot  4
