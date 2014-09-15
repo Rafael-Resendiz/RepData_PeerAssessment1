@@ -12,16 +12,16 @@ Show any code that is needed to
 Load the data (i.e. read.csv())
 
 Process/transform the data (if necessary) into a format suitable for your analysis  
-    fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip?accessType=DOWNLOAD"  
-    download.file(fileUrl, destfile = "/Users/administrador/Specialization/Activity_monitoring_data.zip", method = "curl")    
+     fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip?accessType=DOWNLOAD"  
+     download.file(fileUrl, destfile = "/Users/administrador/Specialization/Activity_monitoring_data.zip", method = "curl")    
 unzip the file    
-    unzip("Activity_monitoring_data.zip")    
+     unzip("Activity_monitoring_data.zip")    
 Read the file    
-    activity.csv <- read.table("../Specialization/activity.csv", sep = ",", header = TRUE)    
+     activity.csv <- read.table("../Specialization/activity.csv", sep = ",", header = TRUE)    
 Show the head file    
-    head(activity.csv)    
+     head(activity.csv)    
 Stream the databases  
-    str(activity.csv)    
+     str(activity.csv)    
          
 
 ## What is mean total number of steps taken per day?
