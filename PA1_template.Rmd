@@ -148,7 +148,7 @@ you can see if the activity is fused to the day (omitting missing values​​)
 and then determine the average number of steps per interval the days of the week and compared with weekends. 
 
 ````{r barplot,fig.align='center',fig.height=4,fig.width=8}
-activityDifference <- merge(activity,days)
+activityDifference <- merge(activity,missingDays)
 missNonData <- na.omit(activityDifference)
 averageIntervalDay <- xtabs(steps ~ interval+wday,missNonData)/xtabs(~interval+wday,missNonData)
 dfrm <- as.data.frame(averageIntervalDay)
