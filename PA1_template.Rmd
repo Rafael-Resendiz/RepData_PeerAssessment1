@@ -76,6 +76,9 @@ main = "Daily Activity Patern")
 ```
 
 ## Imputing missing values
+Como se muestra en el resumen del "marco de datos" denominado "actividad", hay valores perdidos en la variable "pasos", de un total de "n" observaciones. La proporcion es bastante alta.  
+
+Por eso, se debería observar la distribución de los datos perdidos por intervalo.
 
 
 
