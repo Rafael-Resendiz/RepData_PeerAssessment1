@@ -59,8 +59,11 @@ Just to check the total number of steps per day are being calculated correctly, 
 
 ## What is the average daily activity pattern?
 
+The dayli activity pattern is defined by the interval
+
 ```{r readdata}
-     str(activity)   
+     average <- xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval)
+     summary(as.numeric(average))   
 ```
          
 
