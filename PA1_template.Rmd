@@ -37,6 +37,7 @@ Stream the databases
 
 ## What is mean total number of steps taken per day?
 
+The *xtabs* function can be used to determine the total number of steps taken per day
 
 
 ## What is the average daily activity pattern?
