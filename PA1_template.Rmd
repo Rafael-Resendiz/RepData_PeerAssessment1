@@ -100,10 +100,15 @@ The total days of study was 61, but data from 8 of those days were lost,
 to find the position of the missing data and their corresponding dates
 of the procedure should be as follows:
 ````{r showmissingdays}
-activity$wday <- factor(strptime(activity$date,"%Y-%m-%d")$wday,labels=c("Sun","Mon","Tue","Wed","Thu","Fri","Sat"))
+activity$wday <- factor(strptime(activity$date,"%Y-%m-%d")$wday,
+labels=c("Sun","Mon","Tue","Wed","Thu","Fri","Sat"))
 missingDays <- unique(subset(within(activity,{NAs <- is.na(steps)}),select = c(date,wday,NAs)))
 subset(missingDays,NAs,select=-NAs)
 ````
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+The differences in activity patterns between weekdays and weekends, 
+you can see if the activity is fused to the day (omitting missing values​​) 
+and then determine the average number of steps per interval the days of the week and compared with weekends. 
