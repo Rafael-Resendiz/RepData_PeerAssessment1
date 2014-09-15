@@ -2,17 +2,17 @@
 
 ## Plot  1  
 
-![plot of chunk unnamed-chunk-2](plotsPA1/averageInterval.png)
+![plot of chunk unnamed-chunk-2](figures/averageInterval.png)
 
 
 ## Plot  2
 
-![plot of chunk unnamed-chunk-2](plotsPA1/missData.png)
+![plot of chunk unnamed-chunk-2](figures/missData.png)
 
 ## Plot  3  
 
-![plot of chunk unnamed-chunk-2](plotsPA1/missDatainday.png)
+![plot of chunk unnamed-chunk-2](figures/missDatainday.png)
 
 
 ## Plot  4
-![plot of chunk unnamed-chunk-2](plotsPA1/plotdiference.png)
+![plot of chunk unnamed-chunk-2](figures/plotdiference.png)
