@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Reproducible Research: Peer Assessment 1</title>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<hr/>
+
+<h1>Reproducible Research: Peer Assessment 1</h1>
+
+<hr/>
+
+<h2><a href="https://github.com/Rafael-Resendiz">Rafael Reséndiz Ramírez</a></h2>
+
+<h3><a href="https://github.com/Rafael-Resendiz/RepData_PeerAssessment1/edit/master/PA1_template.Rmd">PA1_template.Rmd</a></h3>
+
+<hr/>
+
+<h2>Loading and preprocessing the data</h2>
+
+<p>Show any code that is needed to</p>
+
+<p>Load the data (i.e. read.csv())</p>
+
+<p>Process/transform the data (if necessary) into a format suitable for your analysis  </p>
+
+<pre><code class="r readdata">     fileUrl &lt;- &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip?accessType=DOWNLOAD&quot;  
+     download.file(fileUrl, destfile = &quot;/Users/administrador/Specialization/Activity_monitoring_data.zip&quot;, 
+     method = &quot;curl&quot;)    
+</code></pre>
+
+<p>unzip the file    </p>
+
+<pre><code class="r readdata">     unzip(&quot;Activity_monitoring_data.zip&quot;)  
+</code></pre>
+
+<p>Read the file   </p>
+
+<pre><code class="r readdata">     activity &lt;- read.table(&quot;../Specialization/activity.csv&quot;, sep = &quot;,&quot;, header = TRUE)    
+</code></pre>
+
+<p>Show the head file</p>
+
+<pre><code class="r readdata">     head(activity)    
+</code></pre>
+
+<p>Stream the databases</p>
+
+<pre><code class="r readdata">     str(activity)   
+</code></pre>
+
+<h2>What is mean total number of steps taken per day?</h2>
+
+<p>The <em>xtabs</em> and <em>mean</em> function can be used to determine the mean total number of steps taken per day</p>
+
+<pre><code class="r xtabs">     totalNumberSteps &lt;- xtabs(steps ~ date,activity)
+
+     mean(totalNumberSteps)  
+</code></pre>
+
+<p>Other way
+Just to check the total number of steps per day are being calculated correctly, we sum the steps for days explicitly
+ and dividing that number by the total number of days.</p>
+
+<pre><code class="r axplicitsum">      sum(activity$steps, na.rm=TRUE)/length(levels(activity$date)) 
+</code></pre>
+
+<h2>What is the average daily activity pattern?</h2>
+
+<p>The dayli activity pattern is defined by the interval</p>
+
+<pre><code class="r pattern">     average &lt;- xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval)
+     summary(as.numeric(average))   
+</code></pre>
+
+<p>Plot </p>
+
+<pre><code class="r barplot,fig.align=&#39;center&#39;,fig.height=4,fig.width=8">library(lattice)
+barchart(average ~ names(average),
+xlab=&quot;24 hours in the day&quot;,ylab=&quot;Average number of steps in intervals of every 5 minutes&quot;,
+ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
+main = &quot;Daily Activity Patern&quot;)
+</code></pre>
+
+<p>Saving the file</p>
+
+<pre><code class="r savingbarplot"> dev.copy(png, file=&quot;averageInterval.png&quot;, 
+ height=480, 
+ width=480,
+ units = &quot;px&quot;, 
+ bg = &quot;transparent&quot;)
+ dev.off()
+</code></pre>
+
+<h2>Imputing missing values</h2>
+
+<p>As shown in the summary of &ldquo;data frame&rdquo; called &ldquo;activity&rdquo; there lost in the variable &ldquo;distance&rdquo; values​​, 
+a total of &ldquo;n&rdquo; observations. The ratio is quite high. </p>
+
+<p>Therefore, you should observe the distribution of missing data per interval.</p>
+
+<pre><code class="r barplot,fig.align=&#39;center&#39;,fig.height=4,fig.width=8">missdata &lt;- xtabs(is.na(steps) ~ interval, activity)
+barchart(missdata ~ names(missdata),xlab=&quot;24 hours in the day&quot;,
+ylab=&quot;Average number of steps in intervals of every 5 minutes&quot;,
+ylim=c(0,10),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
+main = &quot;Daily Activity Patern (Missing Data)&quot;)
+</code></pre>
+
+<p>Saving the file</p>
+
+<pre><code class="r savingbarplot"> dev.copy(png, file=&quot;missData.png&quot;, 
+ height=480, 
+ width=480,
+ units = &quot;px&quot;, 
+ bg = &quot;transparent&quot;)
+ dev.off()
+</code></pre>
+
+<p>If needed </p>
+
+<pre><code class="r barplot,fig.align=&#39;center&#39;,fig.height=4,fig.width=8">missDatainday &lt;- xtabs(is.na(steps) ~ date, activity)
+barchart(missDatainday ~ names(missDatainday),xlab = &quot;Study Days&quot;,
+         ylab=&quot;Missing values during each of the study days&quot;,
+         ylim=c(0,300),scales=list(x=list(draw=FALSE)), 
+         main= &quot;Missing data by day of study&quot;)
+</code></pre>
+
+<p>Saving the file</p>
+
+<pre><code class="r savingbarplot"> dev.copy(png, file=&quot;missDatainday.png&quot;, 
+ height=480, 
+ width=480,
+ units = &quot;px&quot;, 
+ bg = &quot;transparent&quot;)
+ dev.off()
+</code></pre>
+
+<p>The total days of study was 61, but data from 8 of those days were lost, 
+to find the position of the missing data and their corresponding dates
+of the procedure should be as follows:</p>
+
+<pre><code class="r showmissingdays">activity$wday &lt;- factor(strptime(activity$date,&quot;%Y-%m-%d&quot;)$wday,
+labels=c(&quot;Sun&quot;,&quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,&quot;Thu&quot;,&quot;Fri&quot;,&quot;Sat&quot;))
+missingDays &lt;- unique(subset(within(activity,{NAs &lt;- is.na(steps)}),select = c(date,wday,NAs)))
+subset(missingDays,NAs,select=-NAs)
+</code></pre>
+
+<h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+
+<p>The differences in activity patterns between weekdays and weekends, 
+you can see if the activity is fused to the day (omitting missing values​​) 
+and then determine the average number of steps per interval the days of the week and compared with weekends. </p>
+
+<pre><code class="r barplot,fig.align=&#39;center&#39;,fig.height=4,fig.width=8">activityDifference &lt;- merge(activity,days)
+missNonData &lt;- na.omit(activityDifference)
+averageIntervalDay &lt;- xtabs(steps ~ interval+wday,missNonData)/xtabs(~interval+wday,missNonData)
+dfrm &lt;- as.data.frame(averageIntervalDay)
+barchart(Freq ~ interval|wday,dfrm,layout=c(1,7),strip=FALSE,strip.left=TRUE,
+ylab=&quot;Average number of steps in intervals of every 5 minutes&quot;,xlab=NULL,
+scales=list(x=list(draw=FALSE)),
+main= &quot;Differences in activity patterns between weekdays and weekends&quot;)
+</code></pre>
+
+<p>Saving the file</p>
+
+<pre><code class="r savingbarplot"> dev.copy(png, file=&quot;plotdiference.png&quot;, 
+ height=480, 
+ width=480,
+ units = &quot;px&quot;, 
+ bg = &quot;transparent&quot;)
+ dev.off()
+</code></pre>
+
+</body>
+
+</html>
