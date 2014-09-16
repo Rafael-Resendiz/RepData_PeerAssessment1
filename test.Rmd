@@ -1,0 +1,3 @@
+```{r hello-random, echo=TRUE}
+rnorm(5)
+```
