@@ -77,6 +77,8 @@ xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5
 ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
 main = "Daily Activity Patern")
 ```
+![Sample panel plot](figures/averageInterval.png) 
+
 Saving the file
 ````{r savingbarplot}
  dev.copy(png, file="averageInterval.png", 
