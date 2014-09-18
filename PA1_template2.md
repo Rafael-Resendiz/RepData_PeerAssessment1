@@ -115,7 +115,7 @@ barchart(average ~ names(average),xlab="24 hours in the day",
          ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
          main = "Daily Activity Patern")
 ```
-
+![Sample panel plot](figures2/Daily_Activity_Pattern.png) 
 
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -200,7 +200,7 @@ xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5
 ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
 main = "Daily Activity Patern with imputing missing data")
 ```
-
+![Sample panel plot](figures2/Daily_Activity_Pattern_missingData.png) 
 
 ### Are there differences in activity patterns between weekdays and weekends?
 
@@ -228,7 +228,7 @@ ylab="Average number of steps",xlab="Intervals of every 5 minutes by hours",
 scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
 main= "Differences in activity patterns between weekdays and weekends")
 ```
-
+![Sample panel plot](figures2/Diff_weekdays_weekends.png) 
 
 
 Second Plot
@@ -241,7 +241,7 @@ ylab="Average number of steps",xlab="Intervals of every 5 minutes by hours",
 scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
 main= "Differences in activity patterns between weekdays and weekends by days")
 ```
-
+![Sample panel plot](figures2/ActivityPatterns_by_Days.png) 
 
 
 Your plot will look different from the one above because you will be using the activity monitor data. Note that the above plot was made using the lattice system but you can make the same version of the plot using any plotting system you choose.
