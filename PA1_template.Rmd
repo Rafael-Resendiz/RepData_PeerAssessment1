@@ -102,6 +102,9 @@ ylab="Average number of steps in intervals of every 5 minutes",
 ylim=c(0,10),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
 main = "Daily Activity Patern (Missing Data)")
 ```
+
+![Sample panel plot](figures/missData.png) 
+
 Saving the file
 ````{r savingbarplot1}
  dev.copy(png, file="missData.png", 
@@ -121,6 +124,8 @@ barchart(missDatainday ~ names(missDatainday),xlab = "Study Days",
          ylim=c(0,300),scales=list(x=list(draw=FALSE)), 
          main= "Missing data by day of study")
 ```
+![Sample panel plot](figures/missDatainday.png) 
+
 Saving the file
 ````{r savingbarplot2}
  dev.copy(png, file="missDatainday.png", 
@@ -159,7 +164,12 @@ ylab="Average number of steps in intervals of every 5 minutes",xlab=NULL,
 scales=list(x=list(draw=FALSE)),
 main= "Differences in activity patterns between weekdays and weekends")
 ```
+<<<<<<< HEAD
 Saving the file
+=======
+![Sample panel plot](figures/plotdiference.png) 
+Saving the file`
+>>>>>>> FETCH_HEAD
 ````{r savingbarplot3}
  dev.copy(png, file="plotdiference.png", 
  height=480, 
