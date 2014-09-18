@@ -21,19 +21,19 @@ Process/transform the data (if necessary) into a format suitable for your analys
      method = "curl")    
 ````
 unzip the file    
-```{r readdata}
-     unzip("Activity_monitoring_data.zip")  
+```{r readdata2}
+     unzip("/Users/administrador/Specialization/Activity_monitoring_data.zip")  
 ````
 Read the file   
-```{r readdata}
-     activity <- read.table("../Specialization/activity.csv", sep = ",", header = TRUE)    
+```{r readdata3}
+     activity <- read.table("/Users/administrador/Specialization/activity.csv", sep = ",", header = TRUE)  
 ```
 Show the head file
-```{r readdata}
+```{r readdata4}
      head(activity)    
 ````
 Stream the databases
-```{r readdata}
+```{r readdata5}
      str(activity)   
 ```
          
@@ -51,7 +51,7 @@ The *xtabs* and *mean* function can be used to determine the mean total number o
 Other way
 Just to check the total number of steps per day are being calculated correctly, we sum the steps for days explicitly
  and dividing that number by the total number of days.
- ```{r axplicitsum}
+```{r explicitsum}
       sum(activity$steps, na.rm=TRUE)/length(levels(activity$date)) 
 ```
          
@@ -70,15 +70,17 @@ The dayli activity pattern is defined by the interval
 ```
 Plot 
          
-```{r barplot,fig.align='center',fig.height=4,fig.width=8}
+```{r echo=FALSE, barplot,fig.align='center',fig.height=4,fig.width=8}
 library(lattice)
 barchart(average ~ names(average),
 xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5 minutes",
 ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
 main = "Daily Activity Patern")
 ```
+![Sample panel plot](figures/averageInterval.png) 
+
 Saving the file
-````{r savingbarplot}
+````{r echo=FALSE, savingbarplot}
  dev.copy(png, file="averageInterval.png", 
  height=480, 
  width=480,
@@ -93,15 +95,18 @@ a total of "n" observations. The ratio is quite high.
 
 Therefore, you should observe the distribution of missing data per interval.
 
-````{r barplot,fig.align='center',fig.height=4,fig.width=8}
+````{r echo=FALSE, barplot1,fig.align='center',fig.height=4,fig.width=8}
 missdata <- xtabs(is.na(steps) ~ interval, activity)
 barchart(missdata ~ names(missdata),xlab="24 hours in the day",
 ylab="Average number of steps in intervals of every 5 minutes",
 ylim=c(0,10),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
 main = "Daily Activity Patern (Missing Data)")
 ```
+
+![Sample panel plot](figures/missData.png) 
+
 Saving the file
-````{r savingbarplot}
+````{r echo=FALSE, savingbarplot1}
  dev.copy(png, file="missData.png", 
  height=480, 
  width=480,
@@ -112,15 +117,17 @@ Saving the file
 
 
 If needed 
-````{r barplot,fig.align='center',fig.height=4,fig.width=8}
+````{r echo=FALSE, barplot2,fig.align='center',fig.height=4,fig.width=8}
 missDatainday <- xtabs(is.na(steps) ~ date, activity)
 barchart(missDatainday ~ names(missDatainday),xlab = "Study Days",
          ylab="Missing values during each of the study days",
          ylim=c(0,300),scales=list(x=list(draw=FALSE)), 
          main= "Missing data by day of study")
 ```
+![Sample panel plot](figures/missDatainday.png) 
+
 Saving the file
-````{r savingbarplot}
+````{r echo=FALSE, savingbarplot2}
  dev.copy(png, file="missDatainday.png", 
  height=480, 
  width=480,
@@ -141,14 +148,14 @@ subset(missingDays,NAs,select=-NAs)
 ````
 
 
-## Are there differences in activity patterns between weekdays and weekends?
+### Are there differences in activity patterns between weekdays and weekends?
 
 The differences in activity patterns between weekdays and weekends, 
 you can see if the activity is fused to the day (omitting missing values​​) 
 and then determine the average number of steps per interval the days of the week and compared with weekends. 
 
-````{r barplot,fig.align='center',fig.height=4,fig.width=8}
-activityDifference <- merge(activity,days)
+```{r echo=FALSE, barplot3,fig.align='center',fig.height=4,fig.width=8}
+activityDifference <- merge(activity,missingDays)
 missNonData <- na.omit(activityDifference)
 averageIntervalDay <- xtabs(steps ~ interval+wday,missNonData)/xtabs(~interval+wday,missNonData)
 dfrm <- as.data.frame(averageIntervalDay)
@@ -157,12 +164,19 @@ ylab="Average number of steps in intervals of every 5 minutes",xlab=NULL,
 scales=list(x=list(draw=FALSE)),
 main= "Differences in activity patterns between weekdays and weekends")
 ```
-Saving the file`
-````{r savingbarplot}
+
+
+Saving the file
+
+![Sample panel plot](figures/plotdiference.png) 
+
+Saving the file
+```{r echo=FALSE, savingbarplot3}
  dev.copy(png, file="plotdiference.png", 
  height=480, 
  width=480,
  units = "px", 
  bg = "transparent")
  dev.off()
- ```
+```
+
