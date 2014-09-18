@@ -73,6 +73,14 @@ activity <- read.table("/Users/administrador/Specialization/activity.csv", sep =
 head(activity)
 ```
 
+##   steps       date interval
+## 1    NA 2012-10-01        0
+## 2    NA 2012-10-01        5
+## 3    NA 2012-10-01       10
+## 4    NA 2012-10-01       15
+## 5    NA 2012-10-01       20
+## 6    NA 2012-10-01       25
+
 ### Stream the databases
 ```{r}
 str(activity)
