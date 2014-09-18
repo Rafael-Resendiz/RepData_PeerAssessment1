@@ -22,7 +22,7 @@ Process/transform the data (if necessary) into a format suitable for your analys
 ````
 unzip the file    
 ```{r readdata2}
-     unzip("Activity_monitoring_data.zip")  
+     unzip("/Users/administrador/Specialization/Activity_monitoring_data.zip")  
 ````
 Read the file   
 ```{r readdata3}
@@ -51,7 +51,7 @@ The *xtabs* and *mean* function can be used to determine the mean total number o
 Other way
 Just to check the total number of steps per day are being calculated correctly, we sum the steps for days explicitly
  and dividing that number by the total number of days.
- ```{r axplicitsum}
+```{r explicitsum}
       sum(activity$steps, na.rm=TRUE)/length(levels(activity$date)) 
 ```
          
@@ -77,6 +77,8 @@ xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5
 ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
 main = "Daily Activity Patern")
 ```
+![Sample panel plot](figures/averageInterval.png) 
+
 Saving the file
 ````{r savingbarplot}
  dev.copy(png, file="averageInterval.png", 
@@ -157,7 +159,7 @@ ylab="Average number of steps in intervals of every 5 minutes",xlab=NULL,
 scales=list(x=list(draw=FALSE)),
 main= "Differences in activity patterns between weekdays and weekends")
 ```
-Saving the file`
+Saving the file
 ````{r savingbarplot3}
  dev.copy(png, file="plotdiference.png", 
  height=480, 

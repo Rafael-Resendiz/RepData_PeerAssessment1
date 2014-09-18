@@ -90,7 +90,7 @@ totalNumberSteps <- xtabs(steps ~ date,activity)
 ```
 
 ```{r, echo=FALSE}
-plot(totalNumberSteps)
+plot(totalNumberSteps, main="Total number of steps taken each day")
 ```
 
 2. Calculate and report the **mean** and **median** total number of steps taken per day
@@ -105,7 +105,7 @@ average <- xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval)
 
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
-```{r} 
+```{r, echo=FALSE}
 library(lattice)
 barchart(average ~ names(average),xlab="24 hours in the day",
          ylab="Average number of steps in intervals of every 5 minutes",
@@ -121,18 +121,127 @@ barchart(average ~ names(average),xlab="24 hours in the day",
 maxstep <- max(xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval))
 maxstep
 
+
+
 maxinterval <- xtabs(steps ~ interval,activity)
     mean(maxinterval)
     sum(activity$steps, na.rm=TRUE)/length(levels(activity$interval)) 
 
 ```
 
+### Imputing missing values
+
+Note that there are a number of days/intervals where there are missing values (coded as NA). The presence of missing days may introduce bias into some calculations or summaries of the data.
+
+1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+
+
+````{r} 
+length(which(is.na(activity)==TRUE))
+
+count2 <- complete.cases(activity)
+length(which(count2==FALSE))
+````
+
+
+2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+
+
+````{r} 
+# missinValues <- is.na(activity)
+# which(missinValues==TRUE)
+naForRep <- mean(activity$steps, na.rm=TRUE)
+naForRep
+
+```
+
+3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
+````{r} 
+activity2 <- activity
+activity2[is.na(activity2)] <- naForRep
+head(activity2)
+```
+
+
+4. Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. 
+
+The dayli activity pattern is defined by the interval
+
+```{r pattern2}
+     activity2 <- as.data.frame(activity2)
+     average2 <- xtabs(activity2$steps ~ activity2$interval)/xtabs(~ activity2$interval)
+```
+
+Comparison
+Do these values differ from the estimates from the first part of the assignment?
+First assignment
+```{r summarysumm1}
+     summary(as.numeric(average))   
+```
+Second assignment
+```{r summarysumm2}
+     summary(as.numeric(average2))   
+```
+Comparison
+What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+First Plot
+![Sample panel plot](figures/averageInterval.png) 
+
+Second Plot 
+
+```{r echo=FALSE, barplot9,fig.align='center',fig.height=4,fig.width=8}
+library(lattice)
+barchart(average2 ~ names(average2),
+xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5 minutes",
+ylim=c(0,205.),scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))), 
+main = "Daily Activity Patern with imputing missing data")
+```
+
+
+### Are there differences in activity patterns between weekdays and weekends?
+
+For this part the weekdays() function may be of some help here. Use the dataset with the filled-in missing values for this part.
+
+1. Create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+
+```{r}
+activity2$wday <- factor(weekdays(as.Date(activity2$date)))
+activity2$compday <- factor(activity2$wday)
+levels(activity2$compday) <- c( "Weekdays","Weekdays", "Weekends", "Weekends", "Weekdays","Weekdays","Weekdays")
+head(activity2)
+```
+
+2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
+
+First Plot
+Plot by weekdays and weekends
+
+```{r echo=FALSE, fig.align='center'}
+averageIntervalDay <- xtabs(steps ~ interval+compday,activity2)/xtabs(~interval+compday,activity2)
+dfrm2 <- as.data.frame(averageIntervalDay)
+barchart(Freq ~ interval|compday,dfrm2,layout=c(1,2),strip=T,strip.left=F,
+ylab="Average number of steps",xlab="Intervals of every 5 minutes by hours",
+scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
+main= "Differences in activity patterns between weekdays and weekends")
+```
 
 
 
+Second Plot
+Plot by day
+```{r echo=FALSE}
+averageIntervalDay <- xtabs(steps ~ interval+wday,activity2)/xtabs(~interval+wday,activity2)
+dfrm2 <- as.data.frame(averageIntervalDay)
+barchart(Freq ~ interval|wday,dfrm2,layout=c(1,7),strip=F,strip.left=T,
+ylab="Average number of steps",xlab="Intervals of every 5 minutes by hours",
+scales=list(x=list(at=seq(0,288,by=12),labels=c(0:24))),
+main= "Differences in activity patterns between weekdays and weekends by days")
+```
 
 
 
+Your plot will look different from the one above because you will be using the activity monitor data. Note that the above plot was made using the lattice system but you can make the same version of the plot using any plotting system you choose.
 
 
 
