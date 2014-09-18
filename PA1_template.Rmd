@@ -70,7 +70,7 @@ The dayli activity pattern is defined by the interval
 ```
 Plot 
          
-```{r barplot,fig.align='center',fig.height=4,fig.width=8}
+```{r echo=FALSE, barplot,fig.align='center',fig.height=4,fig.width=8}
 library(lattice)
 barchart(average ~ names(average),
 xlab="24 hours in the day",ylab="Average number of steps in intervals of every 5 minutes",
@@ -80,7 +80,7 @@ main = "Daily Activity Patern")
 ![Sample panel plot](figures/averageInterval.png) 
 
 Saving the file
-````{r savingbarplot}
+````{r echo=FALSE, savingbarplot}
  dev.copy(png, file="averageInterval.png", 
  height=480, 
  width=480,
@@ -95,7 +95,7 @@ a total of "n" observations. The ratio is quite high.
 
 Therefore, you should observe the distribution of missing data per interval.
 
-````{r barplot1,fig.align='center',fig.height=4,fig.width=8}
+````{r echo=FALSE, barplot1,fig.align='center',fig.height=4,fig.width=8}
 missdata <- xtabs(is.na(steps) ~ interval, activity)
 barchart(missdata ~ names(missdata),xlab="24 hours in the day",
 ylab="Average number of steps in intervals of every 5 minutes",
@@ -106,7 +106,7 @@ main = "Daily Activity Patern (Missing Data)")
 ![Sample panel plot](figures/missData.png) 
 
 Saving the file
-````{r savingbarplot1}
+````{r echo=FALSE, savingbarplot1}
  dev.copy(png, file="missData.png", 
  height=480, 
  width=480,
@@ -117,7 +117,7 @@ Saving the file
 
 
 If needed 
-````{r barplot2,fig.align='center',fig.height=4,fig.width=8}
+````{r echo=FALSE, barplot2,fig.align='center',fig.height=4,fig.width=8}
 missDatainday <- xtabs(is.na(steps) ~ date, activity)
 barchart(missDatainday ~ names(missDatainday),xlab = "Study Days",
          ylab="Missing values during each of the study days",
@@ -127,7 +127,7 @@ barchart(missDatainday ~ names(missDatainday),xlab = "Study Days",
 ![Sample panel plot](figures/missDatainday.png) 
 
 Saving the file
-````{r savingbarplot2}
+````{r echo=FALSE, savingbarplot2}
  dev.copy(png, file="missDatainday.png", 
  height=480, 
  width=480,
@@ -148,13 +148,13 @@ subset(missingDays,NAs,select=-NAs)
 ````
 
 
-## Are there differences in activity patterns between weekdays and weekends?
+### Are there differences in activity patterns between weekdays and weekends?
 
 The differences in activity patterns between weekdays and weekends, 
 you can see if the activity is fused to the day (omitting missing values​​) 
 and then determine the average number of steps per interval the days of the week and compared with weekends. 
 
-````{r barplot3,fig.align='center',fig.height=4,fig.width=8}
+```{r echo=FALSE, barplot3,fig.align='center',fig.height=4,fig.width=8}
 activityDifference <- merge(activity,missingDays)
 missNonData <- na.omit(activityDifference)
 averageIntervalDay <- xtabs(steps ~ interval+wday,missNonData)/xtabs(~interval+wday,missNonData)
@@ -164,13 +164,14 @@ ylab="Average number of steps in intervals of every 5 minutes",xlab=NULL,
 scales=list(x=list(draw=FALSE)),
 main= "Differences in activity patterns between weekdays and weekends")
 ```
-<<<<<<< HEAD
+
+
 Saving the file
-=======
+
 ![Sample panel plot](figures/plotdiference.png) 
-Saving the file`
->>>>>>> FETCH_HEAD
-```{r savingbarplot3}
+
+Saving the file
+```{r echo=FALSE, savingbarplot3}
  dev.copy(png, file="plotdiference.png", 
  height=480, 
  width=480,
