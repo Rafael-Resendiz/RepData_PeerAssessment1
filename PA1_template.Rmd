@@ -170,11 +170,12 @@ Saving the file
 ![Sample panel plot](figures/plotdiference.png) 
 Saving the file`
 >>>>>>> FETCH_HEAD
-````{r savingbarplot3}
+```{r savingbarplot3}
  dev.copy(png, file="plotdiference.png", 
  height=480, 
  width=480,
  units = "px", 
  bg = "transparent")
  dev.off()
- ```
+```
+
