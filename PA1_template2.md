@@ -85,10 +85,10 @@ head(activity)
 ```{r}
 str(activity)
 ```
-        'data.frame':    17568 obs. of  3 variables:
-         $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
-         $ date    : Factor w/ 61 levels "2012-10-01","2012-10-02",..: 1 1 1 1 1 1 1 1 1 1 ...
-         $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
+                 'data.frame':    17568 obs. of  3 variables:
+             $ steps   : int  NA NA NA NA NA NA NA NA NA NA ...
+              $ date    : Factor w/ 61 levels "2012-10-01","2012-10-02",..: 1 1 1 1 1 1 1 1 1 1 ...
+             $ interval: int  0 5 10 15 20 25 30 35 40 45 ...
 
 
 ## What is mean total number of steps taken per day?
@@ -102,6 +102,7 @@ totalNumberSteps <- xtabs(steps ~ date,activity)
     mean(totalNumberSteps)
     sum(activity$steps, na.rm=TRUE)/length(levels(activity$date)) 
 ```
+             [1] 9354
 
 ```{r, echo=FALSE}
 plot(totalNumberSteps, main="Total number of steps taken each day")
@@ -114,9 +115,14 @@ plot(totalNumberSteps, main="Total number of steps taken each day")
 ```{r}
 average <- xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval)
     mean(as.numeric(average))  
+```
+             [1] 32.48
+
+    
+```{r}    
     median(as.numeric(average))
 ```
-
+             [1] 29.64
 
 ## What is the average daily activity pattern?
 
