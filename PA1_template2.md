@@ -143,14 +143,18 @@ barchart(average ~ names(average),xlab="24 hours in the day",
 # average2 <- arrange(average ~interval, by= at=seq(0,288,by=12))
 maxstep <- max(xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval))
 maxstep
+```
+
+             [1] 179.1311
 
 
-
+```{r} 
 maxinterval <- xtabs(steps ~ interval,activity)
     mean(maxinterval)
-    sum(activity$steps, na.rm=TRUE)/length(levels(activity$interval)) 
+ #   sum(activity$steps, na.rm=TRUE)/length(levels(activity$interval)) 
 
 ```
+             [1] 1981.278
 
 ### Imputing missing values
 
@@ -161,30 +165,38 @@ Note that there are a number of days/intervals where there are missing values (c
 
 ````{r} 
 length(which(is.na(activity)==TRUE))
-
+# or 
 count2 <- complete.cases(activity)
 length(which(count2==FALSE))
 ````
-
+                      [1] 2304
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
 
 ````{r} 
-# missinValues <- is.na(activity)
-# which(missinValues==TRUE)
 naForRep <- mean(activity$steps, na.rm=TRUE)
 naForRep
 
 ```
 
+                      [1] 37.3826
+
+
 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
-````{r} 
+```{r} 
 activity2 <- activity
 activity2[is.na(activity2)] <- naForRep
 head(activity2)
 ```
 
+               steps             date             interval
+            1 37.3826            2012-10-01        0
+            2 37.3826            2012-10-01        5
+            3 37.3826            2012-10-01       10
+            4 37.3826            2012-10-01       15
+            5 37.3826            2012-10-01       20
+            6 37.3826            2012-10-01       25
 
 4. Make a histogram of the total number of steps taken each day and Calculate and report the **mean** and **median** total number of steps taken per day. 
 
@@ -201,10 +213,16 @@ First assignment
 ```{r summarysumm1}
      summary(as.numeric(average))   
 ```
+            Min.   1st Qu.  Median    Mean    3rd Qu.    Max. 
+            0.00    2.16    29.64     32.48   45.91      179.10 
+
 Second assignment
 ```{r summarysumm2}
      summary(as.numeric(average2))   
 ```
+            Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+            4.903   7.062  34.540  37.380  50.810 184.000 
+
 Comparison
 What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
@@ -234,6 +252,15 @@ activity2$compday <- factor(activity2$wday)
 levels(activity2$compday) <- c( "Weekdays","Weekdays", "Weekends", "Weekends", "Weekdays","Weekdays","Weekdays")
 head(activity2)
 ```
+                steps       date     interval  wday  compday
+            1   37.3826   2012-10-01    0     lunes Weekends
+            2   37.3826   2012-10-01    5     lunes Weekends
+            3   37.3826   2012-10-01    10    lunes Weekends
+            4   37.3826   2012-10-01    15    lunes Weekends
+            5   37.3826   2012-10-01    20    lunes Weekends
+            6   37.3826   2012-10-01    25    lunes Weekends
+
+
 
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using **simulated data**:
 
