@@ -93,6 +93,9 @@ totalNumberSteps <- xtabs(steps ~ date,activity)
 plot(totalNumberSteps, main="Total number of steps taken each day")
 ```
 
+![Sample panel plot](figures2/Steps_by_day.png) 
+
+
 2. Calculate and report the **mean** and **median** total number of steps taken per day
 ```{r}
 average <- xtabs(activity$steps ~ activity$interval)/xtabs(~ activity$interval)
