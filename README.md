@@ -1,4 +1,5 @@
-# PLEASE REVIEW THE TEMPLATE2 & Figures2 files
+# PLEASE 
+Review PA1_template2.Rmd & Figures2 files
 _____________________________________________
 
 ## Introduction
